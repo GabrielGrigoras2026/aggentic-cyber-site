@@ -115,7 +115,7 @@ export default function HeroSection() {
       style={{ background: "var(--bg)" }}
     >
       {/* Navbar */}
-      <nav className="flex items-center justify-between px-10 py-5">
+      <nav className="flex items-center justify-between py-5" style={{ paddingLeft: "calc(8% + 2cm)", paddingRight: "4%" }}>
         <Image src="/logo.png" alt="aGGentic cyber" width={220} height={55} priority />
         <div className="flex items-center gap-8">
           <a href="#servicii" className="text-sm hover:text-[var(--primary)] transition-colors" style={{ color: "var(--muted)" }}>Servicii</a>
@@ -133,8 +133,8 @@ export default function HeroSection() {
 
       {/* Hero body */}
       <div className="flex flex-1 items-center">
-        {/* Left - Text, împins spre dreapta lângă glob */}
-        <div className="flex flex-col gap-6 pl-10 pr-0 w-[42%]">
+        {/* Left - Text, aliniat la ~25% din pagina */}
+        <div className="flex flex-col gap-6 shrink-0" style={{ width: "42%", paddingLeft: "12%" }}>
           <p className="text-sm tracking-widest uppercase" style={{ color: "var(--primary)" }}>
             Agentic AI Full Service
           </p>
@@ -167,10 +167,10 @@ export default function HeroSection() {
           </motion.p>
         </div>
 
-        {/* Right - Globe 3D, împins spre dreapta */}
-        <div className="flex-1 h-[560px] relative">
+        {/* Right - Globe 3D, aliniat la dreapta */}
+        <div className="h-[580px] relative" style={{ width: "58%" }}>
           <div
-            className="absolute inset-0 rounded-full blur-3xl"
+            className="absolute inset-0 blur-3xl"
             style={{ background: "var(--glow)" }}
           />
           <Canvas camera={{ position: [0, 0, 3.5], fov: 50 }}>
