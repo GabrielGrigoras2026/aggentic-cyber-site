@@ -1,11 +1,11 @@
 "use client";
 
 import { useRef, useMemo } from "react";
-import Image from "next/image";
 import { motion } from "framer-motion";
 import { Canvas, useFrame, useLoader } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import * as THREE from "three";
+import { useLang } from "@/lib/lang-context";
 
 const ACCENT = new THREE.Color("#00E6C3");
 const RADIUS = 1.4;
@@ -27,13 +27,16 @@ function Globe() {
 
     const positions: number[] = [];
     const STEP = 1;
-
     for (let y = 0; y < H; y += STEP) {
       for (let x = 0; x < W; x += STEP) {
         const i = (y * W + x) * 4;
         const r = data[i], g = data[i + 1], b = data[i + 2];
-        const isLand = g > 60 && g > b + 20;
-        if (!isLand) continue;
+        // ocean: blue clearly dominant over both r and g
+        const isOcean = b > r + 20 && b > g + 20 && b > 60;
+        // arctic/antarctic ice over ocean: very light grey/white near poles
+        const lat = (1 - y / H) * 180 - 90;
+        const isArcticOcean = lat > 75 && r > 150 && g > 150 && b > 150 && Math.abs(r - b) < 20;
+        if (isOcean || isArcticOcean) continue;
 
         const phi = (1 - y / H) * Math.PI;
         const theta = (x / W) * Math.PI * 2 - Math.PI / 2;
@@ -83,14 +86,14 @@ function Globe() {
 
   useFrame(() => {
     if (groupRef.current) {
-      groupRef.current.rotation.y += 0.00075;
+      groupRef.current.rotation.y += 0.001125;
     }
   });
 
   return (
     <group ref={groupRef} rotation={[0.7, 1.0, Math.PI]}>
       <points geometry={dotPoints}>
-        <pointsMaterial color={ACCENT} size={0.018} sizeAttenuation transparent opacity={0.85} />
+        <pointsMaterial color={ACCENT} size={0.022} sizeAttenuation transparent opacity={0.9} />
       </points>
       {gridLines.map((geo, i) => (
         <line key={i}>
@@ -106,37 +109,65 @@ function Globe() {
   );
 }
 
-const MARQUEE_TEXT = "AGENTIC AI • SECURE AUTOMATION • AI TOOLS • WORKFLOW AUTOMATION • SOLOPRENEUR • AGENTIC AI • SECURE AUTOMATION • AI TOOLS • WORKFLOW AUTOMATION • SOLOPRENEUR • ";
+const T = {
+  ro: {
+    nav: ["Servicii", "Proces", "Proiecte", "Contact"],
+    navHrefs: ["#servicii", "#proces", "#proiecte", "#contact"],
+    cta: "Începe acum",
+    tag: "Agentic AI Full Service",
+    h1: ["Suntem în pas", "cu AI-ul!"],
+    sub: "- Fii și TU! -",
+    desc: "Construim, automatizăm și scalăm fluxuri de lucru agentice pentru soloprenori și profesioniști care vor să fie cu un pas înaintea tuturor.",
+    marquee: "AGENTIC AI • AUTOMATIZARE SECURIZATĂ • UNELTE AI • AUTOMATIZARE FLUX DE LUCRU • SOLOPRENEUR • ",
+  },
+  en: {
+    nav: ["Services", "Process", "Projects", "Contact"],
+    navHrefs: ["#servicii", "#proces", "#proiecte", "#contact"],
+    cta: "Get Started",
+    tag: "Agentic AI Full Service",
+    h1: ["We keep pace", "with AI!"],
+    sub: "- You should too! -",
+    desc: "We build, automate, and scale agentic workflows for solopreneurs and professionals who want to stay one step ahead of everyone else.",
+    marquee: "AGENTIC AI • SECURE AUTOMATION • AI TOOLS • WORKFLOW AUTOMATION • SOLOPRENEUR • ",
+  },
+};
+
+function LangToggle() {
+  const { lang, setLang } = useLang();
+  return (
+    <div className="flex items-center rounded-full overflow-hidden" style={{ border: "1px solid var(--border)" }}>
+      {(["en", "ro"] as const).map((l) => (
+        <button
+          key={l}
+          onClick={() => setLang(l)}
+          className="px-4 py-1.5 text-xs font-bold uppercase tracking-widest transition-all"
+          style={{
+            background: lang === l ? "var(--primary)" : "transparent",
+            color: lang === l ? "var(--bg)" : "var(--muted)",
+          }}
+        >
+          {l}
+        </button>
+      ))}
+    </div>
+  );
+}
 
 export default function HeroSection() {
+  const { lang } = useLang();
+  const t = T[lang];
+
   return (
     <section
       className="relative flex flex-col min-h-screen"
-      style={{ background: "var(--bg)" }}
+      style={{ background: "var(--bg)", paddingTop: "80px" }}
     >
-      {/* Navbar */}
-      <nav className="flex items-center justify-between py-5" style={{ paddingLeft: "calc(8% + 2cm)", paddingRight: "4%" }}>
-        <Image src="/logo.png" alt="aGGentic cyber" width={220} height={55} priority />
-        <div className="flex items-center gap-8">
-          <a href="#servicii" className="text-sm hover:text-[var(--primary)] transition-colors" style={{ color: "var(--muted)" }}>Servicii</a>
-          <a href="#proces" className="text-sm hover:text-[var(--primary)] transition-colors" style={{ color: "var(--muted)" }}>Proces</a>
-          <a href="#proiecte" className="text-sm hover:text-[var(--primary)] transition-colors" style={{ color: "var(--muted)" }}>Proiecte</a>
-          <a href="#contact" className="text-sm hover:text-[var(--primary)] transition-colors" style={{ color: "var(--muted)" }}>Contact</a>
-          <button
-            className="px-5 py-2 rounded text-sm font-semibold transition-all hover:brightness-110"
-            style={{ background: "var(--primary)", color: "var(--bg)" }}
-          >
-            Începe acum
-          </button>
-        </div>
-      </nav>
-
       {/* Hero body */}
       <div className="flex flex-1 items-center">
-        {/* Left - Text, aliniat la ~25% din pagina */}
+        {/* Left */}
         <div className="flex flex-col gap-6 shrink-0" style={{ width: "42%", paddingLeft: "12%" }}>
           <p className="text-sm tracking-widest uppercase" style={{ color: "var(--primary)" }}>
-            Agentic AI Full Service
+            {t.tag}
           </p>
           <motion.h1
             className="text-6xl font-black leading-tight"
@@ -144,8 +175,9 @@ export default function HeroSection() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: "easeOut" }}
+            key={lang}
           >
-            Suntem în pas<br />cu AI-ul!
+            {t.h1[0]}<br />{t.h1[1]}
           </motion.h1>
           <motion.p
             className="text-3xl font-bold italic"
@@ -153,8 +185,9 @@ export default function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
+            key={lang + "-sub"}
           >
-            - Fii și TU! -
+            {t.sub}
           </motion.p>
           <motion.p
             className="text-base leading-relaxed"
@@ -162,18 +195,19 @@ export default function HeroSection() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.7, delay: 0.4 }}
+            key={lang + "-desc"}
           >
-            Construim, automatizăm și scalăm fluxuri de lucru agentice pentru soloprenori și profesioniști care vor să fie cu un pas înaintea tuturor.
+            {t.desc}
           </motion.p>
         </div>
 
-        {/* Right - Globe 3D, aliniat la dreapta */}
+        {/* Right - Globe */}
         <div className="h-[580px] relative" style={{ width: "58%" }}>
           <div
             className="absolute inset-0 blur-3xl"
             style={{ background: "var(--glow)" }}
           />
-          <Canvas camera={{ position: [0, 0, 3.5], fov: 50 }}>
+          <Canvas camera={{ position: [0, 0, 3.5], fov: 50 }} style={{ pointerEvents: "none" }}>
             <ambientLight intensity={1} />
             <Globe />
             <OrbitControls enableZoom={false} enablePan={false} autoRotate={false} />
@@ -184,15 +218,14 @@ export default function HeroSection() {
       {/* Marquee */}
       <div
         className="overflow-hidden py-4 border-t"
-        style={{ borderColor: "var(--border)" }}
+        style={{ borderColor: "var(--border)", marginBottom: "8vh" }}
       >
         <div className="flex whitespace-nowrap animate-marquee">
-          <span className="text-sm tracking-widest uppercase pr-8" style={{ color: "var(--muted)" }}>
-            {MARQUEE_TEXT}
-          </span>
-          <span className="text-sm tracking-widest uppercase pr-8" style={{ color: "var(--muted)" }}>
-            {MARQUEE_TEXT}
-          </span>
+          {[0, 1].map((k) => (
+            <span key={k} className="text-sm tracking-widest uppercase pr-8" style={{ color: "var(--muted)" }}>
+              {t.marquee}{t.marquee}
+            </span>
+          ))}
         </div>
       </div>
     </section>
