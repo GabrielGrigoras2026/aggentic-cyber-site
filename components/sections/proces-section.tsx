@@ -77,7 +77,7 @@ export default function ProcesSection() {
         {/* Header */}
         <motion.div
           className="text-center"
-          style={{ marginBottom: "4rem" }}
+          style={{ marginBottom: "8rem" }}
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -90,18 +90,19 @@ export default function ProcesSection() {
         </motion.div>
 
         {/* Cards */}
-        <div className="grid grid-cols-4 gap-6">
+        <div className="grid grid-cols-4 gap-8 items-stretch">
           {pasi.map((pas, i) => (
             <motion.div
               key={pas.nr}
+              className="flex"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
             >
               <AnimatedBorderCard
-                className="rounded-2xl p-8 flex flex-col gap-6 cursor-default"
-                style={{ background: "var(--surface)", border: "1px solid var(--border)", minHeight: "280px" }}
+                className="rounded-2xl p-9 flex flex-col gap-4 cursor-default w-full"
+                style={{ background: "var(--surface)", border: "1px solid var(--border)", height: "300px" }}
               >
                 {/* Number */}
                 <span

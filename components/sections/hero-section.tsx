@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useMemo } from "react";
+import { useRef, useMemo, useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Canvas, useFrame, useLoader } from "@react-three/fiber";
 import * as THREE from "three";
@@ -157,6 +157,19 @@ function LangToggle() {
 export default function HeroSection() {
   const { lang } = useLang();
   const t = T[lang];
+  const globeWrapRef = useRef<HTMLDivElement>(null);
+  const [globeVisible, setGlobeVisible] = useState(true);
+
+  useEffect(() => {
+    const el = globeWrapRef.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      ([entry]) => setGlobeVisible(entry.isIntersecting),
+      { threshold: 0.01 }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
 
   return (
     <section
@@ -203,15 +216,27 @@ export default function HeroSection() {
         </div>
 
         {/* Right - Globe */}
-        <div className="h-[580px] relative" style={{ width: "58%" }}>
+        <div ref={globeWrapRef} className="h-[580px] relative" style={{ width: "58%" }}>
           <div
             className="absolute inset-0 blur-3xl"
             style={{ background: "var(--glow)" }}
           />
-          <Canvas camera={{ position: [0, 0, 3.5], fov: 50 }} style={{ pointerEvents: "none" }} events={noopEventManager}>
-            <ambientLight intensity={1} />
-            <Globe />
-          </Canvas>
+          <motion.div
+            className="absolute inset-0"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1.4, delay: 0.5, ease: "easeOut" }}
+          >
+            <Canvas
+              camera={{ position: [0, 0, 3.5], fov: 50 }}
+              style={{ pointerEvents: "none" }}
+              events={noopEventManager}
+              frameloop={globeVisible ? "always" : "never"}
+            >
+              <ambientLight intensity={1} />
+              <Globe />
+            </Canvas>
+          </motion.div>
         </div>
       </div>
 

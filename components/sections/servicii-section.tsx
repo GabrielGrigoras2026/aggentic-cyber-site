@@ -16,7 +16,7 @@ const SERVICII = {
     { icon: "💼", tag: "Sales", titlu: "Sisteme de Vânzări", desc: "Infrastructură scalabilă: CRM, secvențe de email și follow-up-uri automate care închid contracte 24/7." },
     { icon: "◈", tag: "Brand", titlu: "Branding", desc: "Identități de brand strategice care comandă atenția și construiesc recunoaștere durabilă pe piețe competitive." },
     { icon: "✦", tag: "Brand", titlu: "Design Logo", desc: "Mărci distinctive care îți surprind esența. Design-uri atemporale care funcționează pe orice mediu și scară." },
-    { icon: "⇄", tag: "Social", titlu: "Automatizări Social Media", desc: "Programare inteligentă, auto-engagement și pipeline-uri de conținut AI care îți cresc audiența pe pilot automat." },
+    { icon: "⇄", tag: "Social", titlu: "Automatizări Social", desc: "Programare inteligentă, auto-engagement și pipeline-uri de conținut AI care îți cresc audiența pe pilot automat." },
     { icon: "▶", tag: "Creative", titlu: "Editare Video", desc: "Producție video short-form și long-form. De la footage brut la conținut șlefuit, gata de publicat." },
   ],
   en: [
@@ -30,7 +30,7 @@ const SERVICII = {
     { icon: "💼", tag: "Sales", titlu: "Sales Systems", desc: "Scalable infrastructure: CRM setup, email sequences, and automated follow-ups that close deals 24/7." },
     { icon: "◈", tag: "Brand", titlu: "Branding", desc: "Strategic brand identities that command attention and build lasting recognition in competitive markets." },
     { icon: "✦", tag: "Brand", titlu: "Logo Design", desc: "Distinctive marks that capture your essence. Timeless designs that work across every medium and scale." },
-    { icon: "⇄", tag: "Social", titlu: "Social Media Automation", desc: "Intelligent scheduling, auto-engagement, and AI-generated content pipelines that grow your audience on autopilot." },
+    { icon: "⇄", tag: "Social", titlu: "Social Automation", desc: "Intelligent scheduling, auto-engagement, and AI-generated content pipelines that grow your audience on autopilot." },
     { icon: "▶", tag: "Creative", titlu: "Video Editing", desc: "Short-form and long-form video production. From raw footage to polished, platform-ready content." },
   ],
 };
@@ -63,18 +63,19 @@ export default function ServiciiSection() {
         </motion.div>
 
         {/* Grid */}
-        <div className="grid grid-cols-4 gap-8">
+        <div className="grid grid-cols-4 gap-8 items-stretch">
           {servicii.map((s, i) => (
             <motion.div
               key={s.titlu}
+              className="flex"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: (i % 4) * 0.08 }}
             >
             <AnimatedBorderCard
-              className="flex flex-col items-center text-center gap-4 rounded-2xl p-9 cursor-pointer group"
-              style={{ background: "var(--surface)", border: "1px solid var(--border)", height: "100%" }}
+              className="flex flex-col items-center text-center gap-4 rounded-2xl p-9 cursor-pointer group w-full"
+              style={{ background: "var(--surface)", border: "1px solid var(--border)", height: "300px" }}
             >
               <div className="flex items-center gap-3">
                 <div
