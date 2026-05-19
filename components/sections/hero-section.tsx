@@ -118,7 +118,7 @@ const T = {
     tag: "Agentic AI Full Service",
     h1: ["Suntem în pas", "cu AI-ul!"],
     sub: "- Fii și TU! -",
-    desc: "Construim, automatizăm și scalăm fluxuri de lucru agentice pentru soloprenori și profesioniști care vor să fie cu un pas înaintea tuturor.",
+    desc: "AI, automatizări și soluții digitale pentru oameni și afaceri care vor să lucreze mai inteligent.",
     marquee: "AGENTIC AI • AUTOMATIZARE SECURIZATĂ • UNELTE AI • AUTOMATIZARE FLUX DE LUCRU • SOLOPRENEUR • ",
   },
   en: {
@@ -128,7 +128,7 @@ const T = {
     tag: "Agentic AI Full Service",
     h1: ["We keep pace", "with AI!"],
     sub: "- You should too! -",
-    desc: "We build, automate, and scale agentic workflows for solopreneurs and professionals who want to stay one step ahead of everyone else.",
+    desc: "AI, automation, and digital solutions for people and businesses that want to work smarter.",
     marquee: "AGENTIC AI • SECURE AUTOMATION • AI TOOLS • WORKFLOW AUTOMATION • SOLOPRENEUR • ",
   },
 };
@@ -204,8 +204,8 @@ export default function HeroSection() {
             {t.sub}
           </motion.p>
           <motion.p
-            className="text-base leading-relaxed"
-            style={{ color: "var(--muted)" }}
+            className="leading-relaxed"
+            style={{ color: "var(--muted)", fontSize: "1.5rem" }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.7, delay: 0.4 }}

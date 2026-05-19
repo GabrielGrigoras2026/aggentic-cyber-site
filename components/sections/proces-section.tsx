@@ -105,10 +105,7 @@ export default function ProcesSection() {
                 style={{ background: "var(--surface)", border: "1px solid var(--border)", height: "300px" }}
               >
                 {/* Number */}
-                <span
-                  className="text-7xl font-black leading-none select-none"
-                  style={{ color: "var(--surface-2)" }}
-                >
+                <span className="proces-nr text-7xl font-black leading-none select-none">
                   {pas.nr}
                 </span>
 
