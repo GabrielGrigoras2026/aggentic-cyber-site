@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { useLang } from "@/lib/lang-context";
+import AnimatedBorderCard from "@/components/animated-border-card";
 
 const SERVICII = {
   ro: [
@@ -66,13 +67,14 @@ export default function ServiciiSection() {
           {servicii.map((s, i) => (
             <motion.div
               key={s.titlu}
-              className="flex flex-col items-center text-center gap-4 rounded-2xl p-9 cursor-pointer group"
-              style={{ background: "var(--surface)", border: "1px solid var(--border)" }}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: (i % 4) * 0.08 }}
-              whileHover={{ borderColor: "var(--primary)", scale: 1.05, transition: { duration: 0.2 } }}
+            >
+            <AnimatedBorderCard
+              className="flex flex-col items-center text-center gap-4 rounded-2xl p-9 cursor-pointer group"
+              style={{ background: "var(--surface)", border: "1px solid var(--border)", height: "100%" }}
             >
               <div className="flex items-center gap-3">
                 <div
@@ -104,6 +106,7 @@ export default function ServiciiSection() {
               >
                 {header.cta} <span>›</span>
               </a>
+            </AnimatedBorderCard>
             </motion.div>
           ))}
         </div>

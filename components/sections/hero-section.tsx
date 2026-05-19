@@ -3,9 +3,10 @@
 import { useRef, useMemo } from "react";
 import { motion } from "framer-motion";
 import { Canvas, useFrame, useLoader } from "@react-three/fiber";
-import { OrbitControls } from "@react-three/drei";
 import * as THREE from "three";
 import { useLang } from "@/lib/lang-context";
+
+const noopEventManager = () => ({ connected: false, connect: () => {}, disconnect: () => {}, handlers: {} });
 
 const ACCENT = new THREE.Color("#00E6C3");
 const RADIUS = 1.4;
@@ -207,10 +208,9 @@ export default function HeroSection() {
             className="absolute inset-0 blur-3xl"
             style={{ background: "var(--glow)" }}
           />
-          <Canvas camera={{ position: [0, 0, 3.5], fov: 50 }} style={{ pointerEvents: "none" }}>
+          <Canvas camera={{ position: [0, 0, 3.5], fov: 50 }} style={{ pointerEvents: "none" }} events={noopEventManager}>
             <ambientLight intensity={1} />
             <Globe />
-            <OrbitControls enableZoom={false} enablePan={false} autoRotate={false} />
           </Canvas>
         </div>
       </div>
