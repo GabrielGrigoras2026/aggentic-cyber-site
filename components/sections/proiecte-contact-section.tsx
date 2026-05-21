@@ -94,7 +94,8 @@ export default function ProiecteContactSection() {
       <div className="relative w-full px-12 grid grid-cols-2 gap-16" style={{ maxWidth: "1500px", margin: "0 auto", zIndex: 2 }}>
         {/* LEFT: Proiecte */}
         <motion.div
-          className="flex flex-col justify-center"
+          className="flex flex-col justify-end"
+          style={{ paddingBottom: "4.5rem" }}
           initial={{ opacity: 0, x: -30 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}

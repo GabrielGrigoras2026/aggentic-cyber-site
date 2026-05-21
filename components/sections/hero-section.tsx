@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { Canvas, useFrame, useLoader } from "@react-three/fiber";
 import * as THREE from "three";
 import { useLang } from "@/lib/lang-context";
+import DustBg from "@/components/dust-bg";
 
 const noopEventManager = () => ({ connected: false, connect: () => {}, disconnect: () => {}, handlers: {} });
 
@@ -174,10 +175,13 @@ export default function HeroSection() {
   return (
     <section
       className="relative flex flex-col min-h-screen"
-      style={{ background: "var(--bg)", paddingTop: "80px" }}
+      style={{ background: "#000", paddingTop: "80px" }}
     >
+      {/* Particule cyan in miscare browniana */}
+      <DustBg />
+
       {/* Hero body */}
-      <div className="flex flex-1 items-center">
+      <div className="flex flex-1 items-center relative" style={{ zIndex: 2 }}>
         {/* Left */}
         <div className="flex flex-col gap-6 shrink-0" style={{ width: "42%", paddingLeft: "12%" }}>
           <p className="text-sm tracking-widest uppercase" style={{ color: "var(--primary)" }}>
@@ -216,7 +220,14 @@ export default function HeroSection() {
         </div>
 
         {/* Right - Globe */}
-        <div ref={globeWrapRef} className="h-[580px] relative" style={{ width: "58%" }}>
+        <div ref={globeWrapRef} className="h-[580px] relative" style={{ width: "58%", zIndex: 3 }}>
+          {/* Mask circular sub glob, ascunde particulele exact in zona lui */}
+          <div
+            className="absolute inset-0 pointer-events-none"
+            style={{
+              background: "radial-gradient(circle at 50% 50%, #000 50%, rgba(0,0,0,0.7) 65%, transparent 85%)",
+            }}
+          />
           <div
             className="absolute inset-0 blur-3xl"
             style={{ background: "var(--glow)" }}
@@ -231,7 +242,7 @@ export default function HeroSection() {
               camera={{ position: [0, 0, 3.5], fov: 50 }}
               style={{ pointerEvents: "none" }}
               events={noopEventManager}
-              frameloop={globeVisible ? "always" : "never"}
+              frameloop="always"
             >
               <ambientLight intensity={1} />
               <Globe />
@@ -242,8 +253,8 @@ export default function HeroSection() {
 
       {/* Marquee */}
       <div
-        className="overflow-hidden py-4 border-t"
-        style={{ borderColor: "var(--border)", marginBottom: "8vh" }}
+        className="overflow-hidden py-4 border-t relative"
+        style={{ borderColor: "var(--border)", marginBottom: "8vh", zIndex: 2 }}
       >
         <div className="flex whitespace-nowrap animate-marquee">
           {[0, 1].map((k) => (

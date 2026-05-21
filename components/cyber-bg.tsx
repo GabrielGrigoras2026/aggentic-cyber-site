@@ -40,13 +40,12 @@ export default function CyberBg() {
     resize();
     window.addEventListener("resize", resize);
 
-    // Coloane de cod binar (stanga ecranului)
+    // Coloane de cod binar (stanga ecranului); chars per coloana se calculeaza per frame
     const cols = 18;
     const binaryStreams = Array.from({ length: cols }, (_, i) => ({
       x: i * 28 + 8,
       speed: 0.4 + Math.random() * 0.8,
       offset: Math.random() * 1000,
-      chars: Array.from({ length: 40 }, () => Math.random() > 0.5 ? "1" : "0"),
     }));
 
     // Hexagoane (dreapta)
@@ -101,20 +100,27 @@ export default function CyberBg() {
       ctx.fillStyle = "rgba(5, 10, 22, 0.18)";
       ctx.fillRect(0, 0, w, h);
 
-      // 1) Coloane binare (stanga 35% latime)
+      // 1) Coloane binare (stanga 35% latime), umpla toata inaltimea
       const colsArea = w * 0.4;
       const scale = colsArea / (cols * 28);
+      const lineH = 18;
+      // Numar de caractere suficient sa acopere inaltimea + un buffer ca sa nu se vada wrap-ul
+      const charsPerCol = Math.ceil(h / lineH) + 4;
+      const totalH = charsPerCol * lineH;
       ctx.save();
       ctx.scale(scale, 1);
       ctx.font = "12px ui-monospace, monospace";
       binaryStreams.forEach((s) => {
-        const yShift = (t * s.speed + s.offset) % 600;
-        s.chars.forEach((c, idx) => {
-          const y = (idx * 18 - yShift + 600) % 600 - 20;
-          const fade = 1 - idx / s.chars.length;
+        const yShift = (t * s.speed + s.offset) % totalH;
+        for (let idx = 0; idx < charsPerCol; idx++) {
+          const y = (idx * lineH - yShift + totalH) % totalH - lineH;
+          // Caracter aleator dar stabil per (coloana, idx) ca sa nu palpaie
+          const c = ((s.x * 31 + idx * 17) % 2) === 0 ? "1" : "0";
+          // Fade descendent pe coloana ca efectul "matrix"
+          const fade = 1 - idx / charsPerCol;
           ctx.fillStyle = `rgba(0, 230, 195, ${fade * 0.35})`;
           ctx.fillText(c, s.x, y);
-        });
+        }
       });
       ctx.restore();
 

@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { useLang } from "@/lib/lang-context";
 import AnimatedBorderCard from "@/components/animated-border-card";
+import DustBg from "@/components/dust-bg";
 
 const SERVICII = {
   ro: [
@@ -46,8 +47,9 @@ export default function ServiciiSection() {
   const header = HEADER[lang];
 
   return (
-    <section id="servicii" className="py-24 flex flex-col items-center" style={{ background: "var(--bg)" }}>
-      <div className="w-full px-12" style={{ maxWidth: "1400px" }}>
+    <section id="servicii" className="py-24 flex flex-col items-center relative" style={{ background: "#000" }}>
+      <DustBg />
+      <div className="w-full px-12 relative" style={{ maxWidth: "1400px", zIndex: 2 }}>
         {/* Header */}
         <motion.div
           className="text-center"

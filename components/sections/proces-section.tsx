@@ -4,6 +4,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { useLang } from "@/lib/lang-context";
 import AnimatedBorderCard from "@/components/animated-border-card";
+import DustBg from "@/components/dust-bg";
 
 const PASI = {
   ro: [
@@ -71,30 +72,59 @@ export default function ProcesSection() {
   return (
     <section
       id="proces"
-      className="flex flex-col items-center"
+      className="flex flex-col items-center relative"
       style={{ background: "#000", paddingTop: "8rem", paddingBottom: "6rem" }}
     >
-      <div className="w-full px-12 relative" style={{ maxWidth: "1400px" }}>
-        {/* Decor: face images */}
-        <Image
-          src="/face_left.jpg"
-          alt=""
-          width={400}
-          height={422}
-          aria-hidden
-          className="absolute left-12 pointer-events-none select-none"
-          style={{ width: "280px", height: "auto", opacity: 0.5, top: "-6rem" }}
-        />
-        <Image
-          src="/face_right.jpg"
-          alt=""
-          width={400}
-          height={422}
-          aria-hidden
-          className="absolute right-12 pointer-events-none select-none"
-          style={{ width: "280px", height: "auto", opacity: 0.5, top: "-6rem" }}
-        />
+      {/* Particule cyan in miscare browniana */}
+      <DustBg />
 
+      {/* Decor: face images, ancorate la marginea de sus a sectiunii */}
+      <Image
+        src="/face_left.jpg"
+        alt=""
+        width={400}
+        height={422}
+        aria-hidden
+        className="absolute pointer-events-none select-none"
+        style={{
+          width: "280px",
+          height: "auto",
+          top: 0,
+          left: "3rem",
+          zIndex: 1,
+          // Doua masti compuse: sus->opac (fade vertical sus) + dreapta->opac (fade orizontal spre fata=dreapta)
+          WebkitMaskImage:
+            "linear-gradient(to bottom, transparent 0%, #000 35%, #000 100%), linear-gradient(to right, transparent 0%, #000 50%, #000 100%)",
+          maskImage:
+            "linear-gradient(to bottom, transparent 0%, #000 35%, #000 100%), linear-gradient(to right, transparent 0%, #000 50%, #000 100%)",
+          WebkitMaskComposite: "source-in",
+          maskComposite: "intersect",
+        }}
+      />
+      <Image
+        src="/face_right.jpg"
+        alt=""
+        width={400}
+        height={422}
+        aria-hidden
+        className="absolute pointer-events-none select-none"
+        style={{
+          width: "280px",
+          height: "auto",
+          top: 0,
+          right: "3rem",
+          zIndex: 1,
+          // Oglinda: fade vertical sus + fade orizontal spre stanga (fata=stanga)
+          WebkitMaskImage:
+            "linear-gradient(to bottom, transparent 0%, #000 35%, #000 100%), linear-gradient(to left, transparent 0%, #000 50%, #000 100%)",
+          maskImage:
+            "linear-gradient(to bottom, transparent 0%, #000 35%, #000 100%), linear-gradient(to left, transparent 0%, #000 50%, #000 100%)",
+          WebkitMaskComposite: "source-in",
+          maskComposite: "intersect",
+        }}
+      />
+
+      <div className="w-full px-12 relative" style={{ maxWidth: "1400px", zIndex: 2 }}>
         {/* Header */}
         <motion.div
           className="text-center relative"
