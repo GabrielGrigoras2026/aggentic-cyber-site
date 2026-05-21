@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(Get-ChildItem \"C:\\\\Users\\\\gabi2\\\\site-temp\" | ForEach-Object { Move-Item -LiteralPath $_.FullName -Destination \"C:\\\\Users\\\\gabi2\\\\Site-ul meu\\\\\" -Force }; Write-Host \"Done\")",
+      "PowerShell(Copy-Item -LiteralPath \"C:\\\\Users\\\\gabi2\\\\Site-ul meu\\\\docs\\\\Logo aggentic.png\" -Destination \"C:\\\\Users\\\\gabi2\\\\Site-ul meu\\\\public\\\\logo.png\")",
+      "PowerShell(Copy-Item -LiteralPath \"C:\\\\Users\\\\gabi2\\\\Site-ul meu\\\\docs\\\\Sigla aggentic.png\" -Destination \"C:\\\\Users\\\\gabi2\\\\Site-ul meu\\\\public\\\\sigla.png\")",
+      "Bash(curl -L \"https://raw.githubusercontent.com/nicktarnold/earthjs/master/build/textures/earth_day.jpg\" -o earth.jpg)",
+      "Bash(curl -L \"https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Whole_world_-_land_and_oceans_12000.jpg/2560px-Whole_world_-_land_and_oceans_12000.jpg\" -o earth.jpg)",
+      "Bash(curl -A \"Mozilla/5.0\" -L \"https://cdn.jsdelivr.net/npm/three/examples/textures/land_ocean_ice_cloud_2048.jpg\" -o earth.jpg)",
+      "PowerShell(Invoke-WebRequest -Uri \"https://unpkg.com/three@0.160.0/examples/textures/land_ocean_ice_cloud_2048.jpg\" -OutFile \"C:\\\\Users\\\\gabi2\\\\Site-ul meu\\\\public\\\\earth.jpg\" -UseBasicParsing; \\(Get-Item \"C:\\\\Users\\\\gabi2\\\\Site-ul meu\\\\public\\\\earth.jpg\"\\).Length)",
+      "PowerShell(Invoke-WebRequest -Uri \"https://unpkg.com/three@0.160.0/examples/textures/land_ocean_ice_cloud_2048.jpg\" -Method Head -UseBasicParsing 2>&1; Invoke-WebRequest -Uri \"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/textures/land_ocean_ice_cloud_2048.jpg\" -OutFile \"C:\\\\Users\\\\gabi2\\\\Site-ul meu\\\\public\\\\earth.jpg\" -UseBasicParsing; \\(Get-Item \"C:\\\\Users\\\\gabi2\\\\Site-ul meu\\\\public\\\\earth.jpg\"\\).Length)",
+      "PowerShell(Invoke-WebRequest -Uri \"https://raw.githubusercontent.com/turban/webgl-earth/master/images/2_no_clouds_4k.jpg\" -OutFile \"C:\\\\Users\\\\gabi2\\\\Site-ul meu\\\\public\\\\earth.jpg\" -UseBasicParsing; \\(Get-Item \"C:\\\\Users\\\\gabi2\\\\Site-ul meu\\\\public\\\\earth.jpg\"\\).Length)",
+      "Bash(git init *)"
+    ],
+    "additionalDirectories": [
+      "C:\\Users\\gabi2\\site-temp"
+    ]
+  }
+}

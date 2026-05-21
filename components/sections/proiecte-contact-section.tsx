@@ -2,8 +2,8 @@
 
 import { motion } from "framer-motion";
 import { useState } from "react";
-import Image from "next/image";
 import { useLang } from "@/lib/lang-context";
+import CyberBg from "@/components/cyber-bg";
 
 const T = {
   ro: {
@@ -64,8 +64,8 @@ export default function ProiecteContactSection() {
   };
 
   const inputStyle: React.CSSProperties = {
-    background: "transparent",
-    border: "1px solid var(--border)",
+    background: "rgba(10, 15, 25, 0.55)",
+    border: "1px solid rgba(255, 255, 255, 0.18)",
     borderRadius: "12px",
     padding: "1rem 1.25rem",
     color: "var(--text)",
@@ -73,52 +73,48 @@ export default function ProiecteContactSection() {
     outline: "none",
     width: "100%",
     transition: "border-color 0.2s ease",
+    backdropFilter: "blur(8px)",
   };
 
   return (
-    <section id="proiecte" className="flex" style={{ background: "var(--bg)", paddingTop: "6rem", paddingBottom: "6rem" }}>
-      <div className="w-full px-12 grid grid-cols-2 gap-16" style={{ maxWidth: "1500px", margin: "0 auto" }}>
+    <section id="proiecte" className="relative" style={{ paddingTop: "8rem", paddingBottom: "8rem" }}>
+      {/* Background cyber - umple toata sectiunea */}
+      <CyberBg />
+
+      {/* Overlay dark pentru contrast */}
+      <div
+        className="absolute inset-0"
+        style={{
+          background: "linear-gradient(180deg, rgba(5,10,22,0.45) 0%, rgba(5,10,22,0.7) 100%)",
+          pointerEvents: "none",
+        }}
+      />
+
+      {/* Continut peste fundal */}
+      <div className="relative w-full px-12 grid grid-cols-2 gap-16" style={{ maxWidth: "1500px", margin: "0 auto", zIndex: 2 }}>
         {/* LEFT: Proiecte */}
         <motion.div
-          className="flex flex-col"
+          className="flex flex-col justify-center"
           initial={{ opacity: 0, x: -30 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
         >
-          <h2 className="text-5xl font-black leading-tight" style={{ color: "var(--text)" }}>
-            {t.h2a}{" "}
-            <span style={{ color: "var(--primary)" }}>{t.h2b}</span>
-          </h2>
-          <p className="mt-6 text-lg leading-relaxed" style={{ color: "var(--muted)", maxWidth: "90%" }}>
-            {t.desc}
-          </p>
-
-          {/* Imagine cu workspace */}
-          <div
-            className="relative mt-10 rounded-2xl overflow-hidden"
+          <h2
+            className="leading-none"
             style={{
-              aspectRatio: "16/11",
-              boxShadow: "0 25px 80px rgba(0,0,0,0.6)",
-              border: "1px solid var(--border)",
+              fontFamily: "var(--font-archivo-black)",
+              fontSize: "5rem",
+              color: "#FFD400",
+              textShadow: "0 0 30px rgba(255,212,0,0.45), 0 0 60px rgba(255,212,0,0.25)",
             }}
           >
-            <Image
-              src="/proiecte.jpg"
-              alt="Workspace cu MacBook și iMac"
-              fill
-              style={{ objectFit: "cover" }}
-              sizes="(max-width: 1500px) 50vw, 750px"
-              priority
-            />
-            {/* Overlay subtil pentru contrast */}
-            <div
-              className="absolute inset-0"
-              style={{
-                background: "linear-gradient(180deg, transparent 0%, rgba(10,10,10,0.35) 100%)",
-              }}
-            />
-          </div>
+            {t.h2a}{" "}
+            <span style={{ color: "#FFD400" }}>{t.h2b}</span>
+          </h2>
+          <p className="mt-8 text-xl leading-relaxed proiecte-flash">
+            {t.desc}
+          </p>
         </motion.div>
 
         {/* RIGHT: Contact */}
@@ -165,7 +161,7 @@ export default function ProiecteContactSection() {
               {t.send} →
             </motion.button>
 
-            <div className="flex justify-center gap-6 text-sm mt-1" style={{ color: "var(--muted)" }}>
+            <div className="flex justify-center gap-6 text-sm mt-1" style={{ color: "rgba(255,255,255,0.7)" }}>
               <span>✓ {t.reply}</span>
               <span>✓ {t.noCommit}</span>
             </div>
