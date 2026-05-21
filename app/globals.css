@@ -94,6 +94,16 @@ html {
   color: rgba(0, 230, 195, 0.9) !important;
 }
 
+/* Input-uri formular contact: focus = border verde */
+.contact-input::placeholder {
+  color: var(--muted);
+  opacity: 0.7;
+}
+
+.contact-input:focus {
+  border-color: var(--primary) !important;
+}
+
 body {
   background: var(--bg);
   color: var(--text);

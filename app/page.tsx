@@ -6,6 +6,7 @@ import Navbar from "@/components/navbar";
 import HeroSection from "@/components/sections/hero-section";
 import ServiciiSection from "@/components/sections/servicii-section";
 import ProcesSection from "@/components/sections/proces-section";
+import ProiecteContactSection from "@/components/sections/proiecte-contact-section";
 
 export default function Home() {
   const [showSplash, setShowSplash] = useState(true);
@@ -19,6 +20,7 @@ export default function Home() {
           <HeroSection />
           <ServiciiSection />
           <ProcesSection />
+          <ProiecteContactSection />
         </>
       )}
     </>
