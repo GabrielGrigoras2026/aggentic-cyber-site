@@ -6,7 +6,9 @@
       "PowerShell(winget install --id GitHub.cli)",
       "PowerShell(gh auth status)",
       "Bash(curl -L -o \"c:\\\\Users\\\\gabi2\\\\Site-ul meu\\\\public\\\\proiecte.jpg\" \"https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?w=2000&q=80&auto=format&fit=crop\")",
-      "WebFetch(domain:fonts.google.com)"
+      "WebFetch(domain:fonts.google.com)",
+      "Bash(cp \"c:/Users/gabi2/Downloads/face_left.jpg\" \"c:/Users/gabi2/Site-ul meu/public/face_left.jpg\")",
+      "Bash(cp \"c:/Users/gabi2/Downloads/face_right.jpg\" \"c:/Users/gabi2/Site-ul meu/public/face_right.jpg\")"
     ]
   }
 }

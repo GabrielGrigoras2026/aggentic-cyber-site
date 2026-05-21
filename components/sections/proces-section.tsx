@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { useLang } from "@/lib/lang-context";
 import AnimatedBorderCard from "@/components/animated-border-card";
@@ -71,12 +72,32 @@ export default function ProcesSection() {
     <section
       id="proces"
       className="flex flex-col items-center"
-      style={{ background: "var(--bg)", paddingTop: "8rem", paddingBottom: "6rem" }}
+      style={{ background: "#000", paddingTop: "8rem", paddingBottom: "6rem" }}
     >
-      <div className="w-full px-12" style={{ maxWidth: "1400px" }}>
+      <div className="w-full px-12 relative" style={{ maxWidth: "1400px" }}>
+        {/* Decor: face images */}
+        <Image
+          src="/face_left.jpg"
+          alt=""
+          width={400}
+          height={422}
+          aria-hidden
+          className="absolute left-12 pointer-events-none select-none"
+          style={{ width: "280px", height: "auto", opacity: 0.5, top: "-6rem" }}
+        />
+        <Image
+          src="/face_right.jpg"
+          alt=""
+          width={400}
+          height={422}
+          aria-hidden
+          className="absolute right-12 pointer-events-none select-none"
+          style={{ width: "280px", height: "auto", opacity: 0.5, top: "-6rem" }}
+        />
+
         {/* Header */}
         <motion.div
-          className="text-center"
+          className="text-center relative"
           style={{ marginBottom: "8rem" }}
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -84,7 +105,8 @@ export default function ProcesSection() {
           transition={{ duration: 0.6 }}
         >
           <h2 className="text-5xl font-black" style={{ color: "var(--text)" }}>
-            {header.h2a}{" "}
+            {header.h2a}
+            <br />
             <span style={{ color: "var(--primary)" }}>{header.h2b}</span>
           </h2>
         </motion.div>
