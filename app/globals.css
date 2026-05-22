@@ -107,8 +107,8 @@ html {
 /* Descrierea Proiecte: flash alternativ galben <-> verde */
 @keyframes proiecte-flash {
   0%, 49% {
-    color: #FFD400;
-    text-shadow: 0 0 18px rgba(255, 212, 0, 0.45);
+    color: #E8C547;
+    text-shadow: 0 0 18px rgba(232, 197, 71, 0.35);
   }
   50%, 100% {
     color: var(--primary);
@@ -125,7 +125,7 @@ html {
 @media (prefers-reduced-motion: reduce) {
   .proiecte-flash {
     animation: none;
-    color: #FFD400;
+    color: #E8C547;
   }
 }
 

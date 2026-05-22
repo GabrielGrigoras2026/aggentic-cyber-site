@@ -36,11 +36,11 @@ export default function Navbar() {
 
   return (
     <header
-      className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between py-5"
-      style={{ paddingLeft: "4%", paddingRight: "4%", background: "var(--bg)", borderBottom: "1px solid var(--border)" }}
+      className="fixed top-0 left-0 right-0 z-50 flex items-start justify-between"
+      style={{ paddingLeft: "4%", paddingRight: "4%", paddingTop: "0.5rem", paddingBottom: "0.5rem", background: "var(--bg)", borderBottom: "1px solid var(--border)" }}
     >
       <Image src="/logo.png" alt="aGGentic cyber" width={220} height={55} priority />
-      <div className="flex items-center gap-8">
+      <div className="flex items-center gap-8" style={{ marginTop: "0.75rem" }}>
         {nav.links.map((item, i) => (
           <a key={item} href={nav.hrefs[i]} className="text-sm hover:text-[var(--primary)] transition-colors" style={{ color: "var(--muted)" }}>
             {item}

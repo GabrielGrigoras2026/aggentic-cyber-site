@@ -106,12 +106,12 @@ export default function ProiecteContactSection() {
             style={{
               fontFamily: "var(--font-archivo-black)",
               fontSize: "5rem",
-              color: "#FFD400",
-              textShadow: "0 0 30px rgba(255,212,0,0.45), 0 0 60px rgba(255,212,0,0.25)",
+              color: "#E8C547",
+              textShadow: "0 0 30px rgba(232,197,71,0.35), 0 0 60px rgba(232,197,71,0.18)",
             }}
           >
             {t.h2a}{" "}
-            <span style={{ color: "#FFD400" }}>{t.h2b}</span>
+            <span style={{ color: "#E8C547" }}>{t.h2b}</span>
           </h2>
           <p className="mt-8 text-xl leading-relaxed proiecte-flash">
             {t.desc}
