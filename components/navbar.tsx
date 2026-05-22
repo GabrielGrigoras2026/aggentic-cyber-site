@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useLang } from "@/lib/lang-context";
+import MusicPlayer from "@/components/music-player";
 
 const NAV = {
   ro: { links: ["Servicii", "Proces", "Proiecte", "Contact"], hrefs: ["#servicii", "#proces", "#proiecte", "#contact"], cta: "Începe acum" },
@@ -52,6 +53,7 @@ export default function Navbar() {
           {nav.cta}
         </button>
         <LangToggle />
+        <MusicPlayer />
       </div>
     </header>
   );
