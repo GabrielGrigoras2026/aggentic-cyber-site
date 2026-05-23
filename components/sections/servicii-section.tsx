@@ -47,9 +47,9 @@ export default function ServiciiSection() {
   const header = HEADER[lang];
 
   return (
-    <section id="servicii" className="py-24 flex flex-col items-center relative" style={{ background: "#000" }}>
+    <section id="servicii" className="py-16 md:py-24 flex flex-col items-center relative" style={{ background: "#000" }}>
       <DustBg />
-      <div className="w-full px-12 relative" style={{ maxWidth: "1400px", zIndex: 2 }}>
+      <div className="w-full px-5 md:px-12 relative" style={{ maxWidth: "1400px", zIndex: 2 }}>
         {/* Header */}
         <motion.div
           className="text-center"
@@ -59,13 +59,13 @@ export default function ServiciiSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-5xl font-black" style={{ color: "var(--text)" }}>
+          <h2 className="text-3xl md:text-5xl font-black" style={{ color: "var(--text)" }}>
             {header.titlu}
           </h2>
         </motion.div>
 
         {/* Grid */}
-        <div className="grid grid-cols-4 gap-8 items-stretch">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-8 items-stretch">
           {servicii.map((s, i) => (
             <motion.div
               key={s.titlu}
@@ -76,8 +76,8 @@ export default function ServiciiSection() {
               transition={{ duration: 0.5, delay: (i % 4) * 0.08 }}
             >
             <AnimatedBorderCard
-              className="flex flex-col items-center text-center gap-4 rounded-2xl p-9 cursor-pointer group w-full"
-              style={{ background: "var(--surface)", border: "1px solid var(--border)", height: "300px" }}
+              className="flex flex-col items-center text-center gap-4 rounded-2xl p-6 md:p-9 cursor-pointer group w-full servicii-card"
+              style={{ background: "var(--surface)", border: "1px solid var(--border)" }}
             >
               <div className="flex items-center gap-3">
                 <div

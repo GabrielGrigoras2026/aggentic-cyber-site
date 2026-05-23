@@ -15,15 +15,19 @@ export default function SplashScreen({ onDone }: { onDone: () => void }) {
 
   useEffect(() => {
     if (!ready) return;
-    const handler = () => {
+    const handler = (e: Event) => {
+      // Opreste propagarea ca sa nu activeze componente sub splash
+      // dupa ce splash dispare (ex: hamburger).
+      e.stopPropagation();
+      if ("preventDefault" in e) e.preventDefault();
       setVisible(false);
       setTimeout(onDone, 600);
     };
-    window.addEventListener("keydown", handler);
-    window.addEventListener("pointerdown", handler);
+    window.addEventListener("keydown", handler, { capture: true });
+    window.addEventListener("pointerdown", handler, { capture: true });
     return () => {
-      window.removeEventListener("keydown", handler);
-      window.removeEventListener("pointerdown", handler);
+      window.removeEventListener("keydown", handler, { capture: true });
+      window.removeEventListener("pointerdown", handler, { capture: true });
     };
   }, [ready, onDone]);
 
@@ -39,7 +43,7 @@ export default function SplashScreen({ onDone }: { onDone: () => void }) {
         >
           <motion.div
             className="relative"
-            style={{ height: "80vh", width: "auto", aspectRatio: "1/1" }}
+            style={{ width: "min(80vh, 85vw)", height: "min(80vh, 85vw)" }}
             initial={{ opacity: 0, scale: 0.1 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}

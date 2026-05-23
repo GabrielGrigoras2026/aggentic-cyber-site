@@ -174,21 +174,21 @@ export default function HeroSection() {
 
   return (
     <section
-      className="relative flex flex-col min-h-screen"
-      style={{ background: "#000", paddingTop: "80px" }}
+      className="relative flex flex-col min-h-screen hero-section"
+      style={{ background: "#000" }}
     >
       {/* Particule cyan in miscare browniana */}
       <DustBg />
 
       {/* Hero body */}
-      <div className="flex flex-1 items-center relative" style={{ zIndex: 2 }}>
-        {/* Left */}
-        <div className="flex flex-col gap-6 shrink-0" style={{ width: "42%", paddingLeft: "12%" }}>
-          <p className="text-sm tracking-widest uppercase" style={{ color: "var(--primary)" }}>
+      <div className="flex flex-col md:flex-row flex-1 md:items-center relative" style={{ zIndex: 2 }}>
+        {/* Left (text) */}
+        <div className="flex flex-col gap-4 md:gap-6 md:shrink-0 hero-text-col">
+          <p className="text-xs md:text-sm tracking-widest uppercase" style={{ color: "var(--primary)" }}>
             {t.tag}
           </p>
           <motion.h1
-            className="text-6xl font-black leading-tight"
+            className="text-4xl md:text-6xl font-black leading-tight"
             style={{ color: "var(--text)" }}
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -198,7 +198,7 @@ export default function HeroSection() {
             {t.h1[0]}<br />{t.h1[1]}
           </motion.h1>
           <motion.p
-            className="text-3xl font-bold italic"
+            className="text-2xl md:text-3xl font-bold italic"
             style={{ color: "var(--primary)" }}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -208,8 +208,8 @@ export default function HeroSection() {
             {t.sub}
           </motion.p>
           <motion.p
-            className="leading-relaxed"
-            style={{ color: "var(--muted)", fontSize: "1.5rem" }}
+            className="leading-relaxed text-base md:text-2xl"
+            style={{ color: "var(--muted)" }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.7, delay: 0.4 }}
@@ -220,7 +220,7 @@ export default function HeroSection() {
         </div>
 
         {/* Right - Globe */}
-        <div ref={globeWrapRef} className="h-[580px] relative" style={{ width: "58%", zIndex: 3 }}>
+        <div ref={globeWrapRef} className="relative hero-globe-col" style={{ zIndex: 3 }}>
           {/* Mask circular sub glob, ascunde particulele exact in zona lui */}
           <div
             className="absolute inset-0 pointer-events-none"
