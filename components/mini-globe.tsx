@@ -7,7 +7,7 @@ import * as THREE from "three";
 const ACCENT = new THREE.Color("#00E6C3");
 const RADIUS = 1.4;
 
-const noopEventManager = () => ({ connected: false, connect: () => {}, disconnect: () => {}, handlers: {} });
+const noopEventManager = () => ({ enabled: false, priority: 0, connected: false, connect: () => {}, disconnect: () => {}, handlers: {} }) as any;
 
 function Globe() {
   const groupRef = useRef<THREE.Group>(null);
