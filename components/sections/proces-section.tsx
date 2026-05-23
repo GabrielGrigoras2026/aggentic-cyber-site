@@ -72,8 +72,8 @@ export default function ProcesSection() {
   return (
     <section
       id="proces"
-      className="flex flex-col items-center relative"
-      style={{ background: "#000", paddingTop: "8rem", paddingBottom: "6rem" }}
+      className="proces-section flex flex-col items-center relative"
+      style={{ background: "#000" }}
     >
       {/* Particule cyan in miscare browniana */}
       <DustBg />
@@ -85,20 +85,11 @@ export default function ProcesSection() {
         width={400}
         height={422}
         aria-hidden
-        className="absolute pointer-events-none select-none"
+        className="absolute pointer-events-none select-none proces-face-left"
         style={{
-          width: "280px",
           height: "auto",
           top: 0,
-          left: "3rem",
           zIndex: 1,
-          // Doua masti compuse: sus->opac (fade vertical sus) + dreapta->opac (fade orizontal spre fata=dreapta)
-          WebkitMaskImage:
-            "linear-gradient(to bottom, transparent 0%, #000 35%, #000 100%), linear-gradient(to right, transparent 0%, #000 50%, #000 100%)",
-          maskImage:
-            "linear-gradient(to bottom, transparent 0%, #000 35%, #000 100%), linear-gradient(to right, transparent 0%, #000 50%, #000 100%)",
-          WebkitMaskComposite: "source-in",
-          maskComposite: "intersect",
         }}
       />
       <Image
@@ -107,34 +98,24 @@ export default function ProcesSection() {
         width={400}
         height={422}
         aria-hidden
-        className="absolute pointer-events-none select-none"
+        className="absolute pointer-events-none select-none proces-face-right"
         style={{
-          width: "280px",
           height: "auto",
           top: 0,
-          right: "3rem",
           zIndex: 1,
-          // Oglinda: fade vertical sus + fade orizontal spre stanga (fata=stanga)
-          WebkitMaskImage:
-            "linear-gradient(to bottom, transparent 0%, #000 35%, #000 100%), linear-gradient(to left, transparent 0%, #000 50%, #000 100%)",
-          maskImage:
-            "linear-gradient(to bottom, transparent 0%, #000 35%, #000 100%), linear-gradient(to left, transparent 0%, #000 50%, #000 100%)",
-          WebkitMaskComposite: "source-in",
-          maskComposite: "intersect",
         }}
       />
 
-      <div className="w-full px-12 relative" style={{ maxWidth: "1400px", zIndex: 2 }}>
+      <div className="w-full px-5 md:px-12 relative" style={{ maxWidth: "1400px", zIndex: 2 }}>
         {/* Header */}
         <motion.div
-          className="text-center relative"
-          style={{ marginBottom: "8rem" }}
+          className="text-center relative proces-header"
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-5xl font-black" style={{ color: "var(--text)" }}>
+          <h2 className="text-3xl md:text-5xl font-black" style={{ color: "var(--text)" }}>
             {header.h2a}
             <br />
             <span style={{ color: "var(--primary)" }}>{header.h2b}</span>
@@ -142,7 +123,7 @@ export default function ProcesSection() {
         </motion.div>
 
         {/* Cards */}
-        <div className="grid grid-cols-4 gap-8 items-stretch">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-8 items-stretch">
           {pasi.map((pas, i) => (
             <motion.div
               key={pas.nr}
@@ -153,11 +134,11 @@ export default function ProcesSection() {
               transition={{ duration: 0.5, delay: i * 0.1 }}
             >
               <AnimatedBorderCard
-                className="rounded-2xl p-9 flex flex-col gap-4 cursor-default w-full"
-                style={{ background: "var(--surface)", border: "1px solid var(--border)", height: "300px" }}
+                className="rounded-2xl p-6 md:p-9 flex flex-col gap-4 cursor-default w-full proces-card"
+                style={{ background: "var(--surface)", border: "1px solid var(--border)" }}
               >
                 {/* Number */}
-                <span className="proces-nr text-7xl font-black leading-none select-none">
+                <span className="proces-nr text-6xl md:text-7xl font-black leading-none select-none">
                   {pas.nr}
                 </span>
 
@@ -165,7 +146,7 @@ export default function ProcesSection() {
                 <div style={{ width: "2rem", height: "2px", background: "var(--border)" }} />
 
                 {/* Title */}
-                <h3 className="text-2xl font-black" style={{ color: "var(--text)" }}>
+                <h3 className="text-xl md:text-2xl font-black" style={{ color: "var(--text)" }}>
                   {pas.titlu}
                 </h3>
 

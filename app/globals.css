@@ -149,6 +149,80 @@ body {
   }
 }
 
+/* Proces section - padding si carduri responsive */
+.proces-section {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+.proces-face-left {
+  /* Mobil: fata mai mica, pozitionata in stanga, mascata sa se vada partea ei dreapta */
+  width: 180px;
+  left: -1.5rem;
+  -webkit-mask-image:
+    linear-gradient(to bottom, transparent 0%, #000 35%, #000 100%),
+    linear-gradient(to right, transparent 0%, #000 60%, #000 100%);
+  mask-image:
+    linear-gradient(to bottom, transparent 0%, #000 35%, #000 100%),
+    linear-gradient(to right, transparent 0%, #000 60%, #000 100%);
+  -webkit-mask-composite: source-in;
+  mask-composite: intersect;
+}
+.proces-face-right {
+  /* Mobil: oglinda - fata pe dreapta cu marginea ei stanga vizibila */
+  width: 180px;
+  right: -1.5rem;
+  -webkit-mask-image:
+    linear-gradient(to bottom, transparent 0%, #000 35%, #000 100%),
+    linear-gradient(to left, transparent 0%, #000 60%, #000 100%);
+  mask-image:
+    linear-gradient(to bottom, transparent 0%, #000 35%, #000 100%),
+    linear-gradient(to left, transparent 0%, #000 60%, #000 100%);
+  -webkit-mask-composite: source-in;
+  mask-composite: intersect;
+}
+@media (min-width: 1024px) {
+  .proces-face-left {
+    width: 280px;
+    left: 3rem;
+    -webkit-mask-image:
+      linear-gradient(to bottom, transparent 0%, #000 35%, #000 100%),
+      linear-gradient(to right, transparent 0%, #000 50%, #000 100%);
+    mask-image:
+      linear-gradient(to bottom, transparent 0%, #000 35%, #000 100%),
+      linear-gradient(to right, transparent 0%, #000 50%, #000 100%);
+  }
+  .proces-face-right {
+    width: 280px;
+    right: 3rem;
+    -webkit-mask-image:
+      linear-gradient(to bottom, transparent 0%, #000 35%, #000 100%),
+      linear-gradient(to left, transparent 0%, #000 50%, #000 100%);
+    mask-image:
+      linear-gradient(to bottom, transparent 0%, #000 35%, #000 100%),
+      linear-gradient(to left, transparent 0%, #000 50%, #000 100%);
+  }
+}
+.proces-header {
+  margin-top: 9rem;
+  margin-bottom: 3rem;
+}
+.proces-card {
+  min-height: auto;
+}
+@media (min-width: 1024px) {
+  .proces-section {
+    padding-top: 8rem;
+    padding-bottom: 6rem;
+  }
+  .proces-header {
+    margin-top: 0;
+    margin-bottom: 8rem;
+  }
+  .proces-card {
+    height: 300px;
+  }
+}
+
 /* Music indicator - parte din navbar */
 .music-indicator {
   width: 100%;
