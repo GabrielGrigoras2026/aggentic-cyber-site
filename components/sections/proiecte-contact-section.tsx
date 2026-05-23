@@ -77,7 +77,7 @@ export default function ProiecteContactSection() {
   };
 
   return (
-    <section id="proiecte" className="relative" style={{ paddingTop: "8rem", paddingBottom: "8rem" }}>
+    <section id="proiecte" className="proiecte-section relative">
       {/* Background cyber - umple toata sectiunea */}
       <CyberBg />
 
@@ -91,21 +91,19 @@ export default function ProiecteContactSection() {
       />
 
       {/* Continut peste fundal */}
-      <div className="relative w-full px-12 grid grid-cols-2 gap-16" style={{ maxWidth: "1500px", margin: "0 auto", zIndex: 2 }}>
+      <div className="relative w-full px-5 md:px-12 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16" style={{ maxWidth: "1500px", margin: "0 auto", zIndex: 2 }}>
         {/* LEFT: Proiecte */}
         <motion.div
-          className="flex flex-col justify-end"
-          style={{ paddingBottom: "4.5rem" }}
+          className="flex flex-col lg:justify-end proiecte-left"
           initial={{ opacity: 0, x: -30 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
         >
           <h2
-            className="leading-none"
+            className="leading-none proiecte-title"
             style={{
               fontFamily: "var(--font-archivo-black)",
-              fontSize: "5rem",
               color: "#E8C547",
               textShadow: "0 0 30px rgba(232,197,71,0.35), 0 0 60px rgba(232,197,71,0.18)",
             }}
@@ -113,7 +111,7 @@ export default function ProiecteContactSection() {
             {t.h2a}{" "}
             <span style={{ color: "#E8C547" }}>{t.h2b}</span>
           </h2>
-          <p className="mt-8 text-xl leading-relaxed proiecte-flash">
+          <p className="mt-6 lg:mt-8 text-base lg:text-xl leading-relaxed proiecte-flash">
             {t.desc}
           </p>
         </motion.div>
@@ -130,13 +128,13 @@ export default function ProiecteContactSection() {
           <p className="text-sm tracking-widest uppercase mb-3" style={{ color: "var(--primary)" }}>
             {t.contactTag}
           </p>
-          <h2 className="text-5xl font-black leading-tight" style={{ color: "var(--text)" }}>
+          <h2 className="text-3xl md:text-5xl font-black leading-tight" style={{ color: "var(--text)" }}>
             {t.contactH2a}{" "}
             <span style={{ color: "var(--text)" }}>{t.contactH2b}</span>
           </h2>
 
-          <form onSubmit={handleSubmit} className="flex flex-col gap-4 mt-10">
-            <div className="grid grid-cols-2 gap-4">
+          <form onSubmit={handleSubmit} className="flex flex-col gap-4 mt-8 lg:mt-10">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <input type="text" required placeholder={t.name} value={form.name} onChange={update("name")} style={inputStyle} className="contact-input" />
               <input type="email" required placeholder={t.email} value={form.email} onChange={update("email")} style={inputStyle} className="contact-input" />
             </div>
@@ -155,7 +153,7 @@ export default function ProiecteContactSection() {
             <motion.button
               type="submit"
               className="rounded-xl py-4 font-bold tracking-widest uppercase text-base mt-2"
-              style={{ background: "transparent", border: "1.5px solid var(--primary)", color: "var(--primary)" }}
+              style={{ background: "rgba(10, 15, 25, 0.7)", backdropFilter: "blur(8px)", border: "1.5px solid var(--primary)", color: "var(--primary)" }}
               whileHover={{ background: "var(--primary)", color: "var(--bg)", scale: 1.01 }}
               transition={{ duration: 0.2 }}
             >

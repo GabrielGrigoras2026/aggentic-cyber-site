@@ -181,14 +181,14 @@ export default function HeroSection() {
       <DustBg />
 
       {/* Hero body */}
-      <div className="flex flex-col md:flex-row flex-1 md:items-center relative" style={{ zIndex: 2 }}>
+      <div className="flex flex-col lg:flex-row flex-1 lg:items-center relative" style={{ zIndex: 2 }}>
         {/* Left (text) */}
-        <div className="flex flex-col gap-4 md:gap-6 md:shrink-0 hero-text-col">
-          <p className="text-xs md:text-sm tracking-widest uppercase" style={{ color: "var(--primary)" }}>
+        <div className="flex flex-col gap-4 lg:gap-6 lg:shrink-0 hero-text-col">
+          <p className="text-xs lg:text-sm tracking-widest uppercase" style={{ color: "var(--primary)" }}>
             {t.tag}
           </p>
           <motion.h1
-            className="text-4xl md:text-6xl font-black leading-tight"
+            className="text-4xl lg:text-6xl font-black leading-tight"
             style={{ color: "var(--text)" }}
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -198,7 +198,7 @@ export default function HeroSection() {
             {t.h1[0]}<br />{t.h1[1]}
           </motion.h1>
           <motion.p
-            className="text-2xl md:text-3xl font-bold italic"
+            className="text-2xl lg:text-3xl font-bold italic"
             style={{ color: "var(--primary)" }}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -208,7 +208,7 @@ export default function HeroSection() {
             {t.sub}
           </motion.p>
           <motion.p
-            className="leading-relaxed text-base md:text-2xl"
+            className="leading-relaxed text-base lg:text-2xl"
             style={{ color: "var(--muted)" }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}

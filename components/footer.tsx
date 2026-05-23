@@ -70,12 +70,12 @@ export default function Footer() {
       {/* Linie subtila sus */}
       <div style={{ borderTop: "1px solid var(--border)" }} />
 
-      <div className="relative w-full px-12 pt-12 pb-0" style={{ maxWidth: "1500px", margin: "0 auto", zIndex: 2 }}>
+      <div className="relative w-full footer-inner pt-12 pb-0" style={{ maxWidth: "1500px", margin: "0 auto", zIndex: 2 }}>
         {/* Grid principal: logo+desc (st compact), servicii+marketing (dr, aliniate jos) */}
-        <div className="grid grid-cols-12 gap-12 items-end">
-          {/* Stanga: logo + descriere + social - compact, impins spre dreapta */}
-          <div className="col-span-4 flex flex-col gap-5" style={{ paddingLeft: "5rem" }}>
-            <div className="relative" style={{ width: 320, height: 120 }}>
+        <div className="footer-grid-main gap-10 lg:gap-12 lg:items-end">
+          {/* Stanga: logo (desktop) + descriere + social */}
+          <div className="footer-left flex flex-col gap-5">
+            <div className="relative footer-logo hidden lg:block">
               <Image src="/logo.png" alt="aGGentic cyber" fill style={{ objectFit: "contain", objectPosition: "left center" }} />
             </div>
             <p className="text-sm leading-relaxed" style={{ color: "var(--muted)", maxWidth: "100%" }}>
@@ -95,13 +95,13 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Mini-glob centrat pe axa verticala a siglei (50% din pagina) */}
-          <div className="footer-globe-center">
+          {/* Mini-glob centrat pe axa verticala a siglei - doar desktop (pe mobil apare pe grilaj) */}
+          <div className="footer-globe-center hidden lg:block">
             <MiniGlobe size={170} />
           </div>
 
           {/* Dreapta: tronson Servicii + Marketing */}
-          <div className="col-span-8 flex justify-end gap-24" style={{ paddingRight: "4rem" }}>
+          <div className="footer-right grid grid-cols-2 lg:flex lg:justify-end gap-6 lg:gap-24">
             {/* Servicii */}
             <div className="flex flex-col gap-5">
               <h3 className="text-base font-bold" style={{ color: "var(--text)" }}>
@@ -138,13 +138,11 @@ export default function Footer() {
 
         {/* Linie separator */}
         <div className="mt-8 pt-5" style={{ borderTop: "1px solid var(--border)" }}>
-          <div className="flex items-center text-sm" style={{ color: "var(--muted)" }}>
-            {/* Stanga: copyright aliniat sub logo (paddingLeft: 5rem ca block-ul logo) */}
-            <span style={{ paddingLeft: "5rem" }} className="flex-1">
+          <div className="footer-bottom flex flex-col lg:flex-row lg:items-center gap-4 text-sm" style={{ color: "var(--muted)" }}>
+            <span className="footer-copy flex-1">
               © {year} aGGentic cyber. {t.rights}
             </span>
-            {/* Dreapta: legal aliniat sub coloanele Servicii+Marketing (paddingRight: 4rem ca tronson) */}
-            <div className="flex gap-8" style={{ paddingRight: "4rem" }}>
+            <div className="footer-legal flex flex-wrap gap-6 lg:gap-8">
               {t.legal.map((l) => (
                 <a key={l.label} href={l.href} className="footer-link">
                   {l.label}
@@ -155,20 +153,37 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* Grid 3D in perspectiva (caroiaj cyber) + sigla peste */}
+      {/* Grid 3D in perspectiva (caroiaj cyber) + sigla peste (desktop) / glob (mobil) */}
       <div className="footer-grid-3d">
+        <div className="footer-grid-plane">
+          <div className="footer-grid-pattern" />
+        </div>
         <div className="footer-grid-sigla">
+          {/* Sigla - doar desktop */}
           <div
-            className="relative overflow-hidden"
+            className="footer-sigla-box hidden lg:block relative overflow-hidden"
             style={{
-              width: 300,
-              height: 300,
               borderRadius: "24px",
               background: "var(--bg)",
               boxShadow: "0 20px 60px rgba(0, 230, 195, 0.18)",
             }}
           >
             <Image src="/sigla.png" alt="aGGentic cyber" fill style={{ objectFit: "cover" }} />
+          </div>
+          {/* Glob - doar mobil/tablet (cu fundal radial fade in spate sa ascunda grilajul fara muchie) */}
+          <div
+            className="lg:hidden relative flex items-center justify-center"
+            style={{ width: 220, height: 220 }}
+          >
+            <div
+              className="absolute inset-0 pointer-events-none"
+              style={{
+                background: "radial-gradient(circle, var(--bg) 35%, var(--bg) 50%, transparent 75%)",
+              }}
+            />
+            <div className="relative" style={{ zIndex: 2 }}>
+              <MiniGlobe size={160} />
+            </div>
           </div>
         </div>
       </div>
