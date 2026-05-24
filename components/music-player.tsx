@@ -116,12 +116,11 @@ export default function MusicPlayer() {
       {open && (
         <div
           ref={popoverRef}
-          className="absolute right-[4%] top-full mt-3 rounded-xl p-4 shadow-2xl"
+          className="music-popover absolute top-full mt-3 rounded-xl p-4 shadow-2xl"
           style={{
             background: "rgba(10, 12, 18, 0.95)",
             border: "1px solid var(--border)",
             backdropFilter: "blur(12px)",
-            minWidth: "260px",
             zIndex: 60,
           }}
         >

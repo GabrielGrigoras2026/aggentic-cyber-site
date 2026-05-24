@@ -257,9 +257,9 @@ body {
   padding-bottom: 4rem;
 }
 .proces-face-left {
-  /* Mobil: fata mai mica, pozitionata in stanga, mascata sa se vada partea ei dreapta */
-  width: 180px;
-  left: -1.5rem;
+  /* Mobil mic: 130px. Tableta: 180px. Desktop: 280px (mai jos) */
+  width: 130px;
+  left: -1rem;
   -webkit-mask-image:
     linear-gradient(to bottom, transparent 0%, #000 35%, #000 100%),
     linear-gradient(to right, transparent 0%, #000 60%, #000 100%);
@@ -270,9 +270,9 @@ body {
   mask-composite: intersect;
 }
 .proces-face-right {
-  /* Mobil: oglinda - fata pe dreapta cu marginea ei stanga vizibila */
-  width: 180px;
-  right: -1.5rem;
+  /* Mobil mic: 130px. Tableta: 180px. Desktop: 280px (mai jos) */
+  width: 130px;
+  right: -1rem;
   -webkit-mask-image:
     linear-gradient(to bottom, transparent 0%, #000 35%, #000 100%),
     linear-gradient(to left, transparent 0%, #000 60%, #000 100%);
@@ -281,6 +281,16 @@ body {
     linear-gradient(to left, transparent 0%, #000 60%, #000 100%);
   -webkit-mask-composite: source-in;
   mask-composite: intersect;
+}
+@media (min-width: 640px) {
+  .proces-face-left {
+    width: 180px;
+    left: -1.5rem;
+  }
+  .proces-face-right {
+    width: 180px;
+    right: -1.5rem;
+  }
 }
 @media (min-width: 1024px) {
   .proces-face-left {
@@ -322,6 +332,20 @@ body {
   }
   .proces-card {
     height: 300px;
+  }
+}
+
+/* Music popover - pe mobil ocupa toata latimea, pe desktop fix dreapta */
+.music-popover {
+  left: 4%;
+  right: 4%;
+  min-width: 0;
+}
+@media (min-width: 640px) {
+  .music-popover {
+    left: auto;
+    right: 4%;
+    min-width: 260px;
   }
 }
 
