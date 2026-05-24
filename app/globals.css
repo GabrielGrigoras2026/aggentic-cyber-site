@@ -442,7 +442,7 @@ body {
   transform-origin: 50% 0%;
   overflow: hidden;
 }
-/* Pattern-ul cu grila, animat doar prin translate3d (GPU) */
+/* Pattern-ul cu grila, animat doar prin translate3d (GPU) - toate ecranele */
 .footer-grid-pattern {
   position: absolute;
   left: 0;
@@ -455,11 +455,7 @@ body {
   background-size: 70px 70px;
   will-change: transform;
   transform: translate3d(0, 0, 0);
-}
-@media (min-width: 1280px) {
-  .footer-grid-pattern {
-    animation: grid-scroll 6s linear infinite;
-  }
+  animation: grid-scroll 6s linear infinite;
 }
 
 .footer-grid-3d::after {
