@@ -2,6 +2,38 @@
 
 ---
 
+## 2026-05-24
+
+### Ce s-a făcut
+
+- **Reactivat animația grilei footer** pe toate dimensiunile (mobil + tabletă + desktop). Pe device real (Samsung mobil) nu pâlpâie — flicker-ul vizibil aseară era artefact de DevTools simulator.
+- **Fix popup muzică pe mobil mic**: extins full-width (4% gutters), nu mai iese din ecran spre stânga. De la 640px revine la `right: 4%` cu min-width 260px.
+- **Fix fețe Proces pe mobil mic**: reduse de la 180px la 130px sub 640px (nu mai cuprindeau ambele pe ecran de 412px). Tabletă rămâne 180px, desktop 280px.
+- **PWA manifest** adăugat (`public/manifest.json`) + meta `theme-color`, `apple-web-app-capable`, `viewport-fit: cover`. Scop: stabilizare navbar pe mobil când bara Chrome apare/dispare la scroll.
+- **Fix sizes iconițe manifest** (sigla reală e 1254×1254, era declarată 512×512). Adăugate fallback-uri 192/512. Scos `purpose: maskable` (sigla cu transparență ar fi tăiată).
+- **Conectare Git→Vercel** încercată via CLI (`vercel git connect`). CLI a raportat "already connected", dar dashboard-ul tot afișează "No Production Deployment" — webhook GitHub→Vercel probabil nu e configurat complet. Empty commit pentru trigger nu a generat deploy automat.
+
+### Probleme rămase / Next
+
+- **Dashboard Vercel** afișează "No Production Deployment" pentru `aggentic-cyber-site` deși deployment-urile există și funcționează. Soluție probabilă: Disconnect + Connect Git din Settings dashboard.
+- **Iconița PWA**: după instalarea pe homescreen Android, iconița nu apare. Manifest valid acum, dar comportamentul Chrome incert. De testat cu reinstalare după ultimul commit.
+- **Navbar mișcare pe scroll mobil**: schimbările dvh + theme-color reduc reflow-ul, dar bara Chrome tot apare/dispare. Soluție completă doar prin PWA standalone.
+
+### Commits sesiune (toate împinse pe origin/main)
+
+- `a45011f` feat: enable footer grid animation on all viewport sizes
+- `f80bd71` fix: shrink music popover and proces faces on small phones
+- `859265f` feat: PWA manifest and dvh viewport for stable mobile navbar
+- `5a6bb6e` fix: correct PWA manifest icon sizes
+- `ec80c3b` chore: trigger Vercel auto-deploy via Git integration
+
+### Vercel
+
+- Production deployment activ (ultim: `8v21nw5fj`, Ready, acum 5 min)
+- URL stabil: <https://aggentic-cyber-site.vercel.app>
+
+---
+
 ## 2026-05-21
 
 ### Ce s-a făcut
