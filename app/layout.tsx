@@ -35,6 +35,15 @@ const archivoBlack = Archivo_Black({
 export const metadata: Metadata = {
   title: "aGGentic cyber",
   description: "Agentic AI Full Service",
+  manifest: "/manifest.json",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "black-translucent",
+    title: "aGGentic",
+  },
+  other: {
+    "mobile-web-app-capable": "yes",
+  },
 };
 
 export const viewport: Viewport = {
@@ -42,6 +51,7 @@ export const viewport: Viewport = {
   initialScale: 1,
   maximumScale: 1,
   viewportFit: "cover",
+  themeColor: "#0a0a0a",
 };
 
 export default function RootLayout({

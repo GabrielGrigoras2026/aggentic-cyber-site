@@ -34,6 +34,8 @@ html {
   overflow-x: clip;
   overflow-y: auto;
   overscroll-behavior-y: none;
+  min-height: 100vh;
+  min-height: 100dvh;
 }
 
 body {

@@ -1,0 +1,18 @@
+{
+  "name": "aGGentic cyber",
+  "short_name": "aGGentic",
+  "description": "Agentic AI Full Service",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0a0a",
+  "theme_color": "#0a0a0a",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/sigla.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
